@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Circles with Division</title>
+  <style>
+    #container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      transition: transform 0.5s;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    #innerCircle {
+      width: 60%;
+      height: 60%;
+      background-color: white;
+      top: 20%;
+      left: 20%;
+      z-index: 10;
+    }
+
+    .quadrant {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      z-index: 5;
+    }
+
+    #quadrant1 {
+      border-top-left-radius: 200px;
+      top: 0;
+      left: 0;
+      background-color: #ff9999;
+    }
+
+    #quadrant2 {
+      border-top-right-radius: 200px;
+      top: 0;
+      left: 50%;
+      background-color: #99ff99;
+    }
+
+    #quadrant3 {
+      border-bottom-left-radius: 200px;
+      top: 50%;
+      left: 0;
+      background-color: #9999ff;
+    }
+
+    #quadrant4 {
+      border-bottom-right-radius: 200px;
+      top: 50%;
+      left: 50%;
+      background-color: #ffff99;
+    }
+
+    #container.rotate {
+      animation: rotateAnimation 2s linear;
+    }
+
+    @keyframes rotateAnimation {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #container.rotate-reverse {
+      animation: rotateReverseAnimation 2s linear;
+    }
+
+    @keyframes rotateReverseAnimation {
+      from {
+        transform: rotate(360deg);
+      }
+
+      to {
+        transform: rotate(0deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <center>
+    <div id="container">
+      <div id="innerCircle" class="circle"></div>
+      <div id="quadrant1" class="quadrant"></div>
+      <div id="quadrant2" class="quadrant"></div>
+      <div id="quadrant3" class="quadrant"></div>
+      <div id="quadrant4" class="quadrant"></div>
+    </div>
+  </center>
+  <script>
+    const container = document.getElementById('container');
+
+    container.addEventListener('mouseenter', () => {
+      container.classList.add('rotate');
+    });
+
+    container.addEventListener('mouseleave', () => {
+      container.classList.remove('rotate');
+
+      container.classList.add('rotate-reverse');
+
+      setTimeout(() => {
+        container.classList.remove('rotate-reverse');
+      }, 2000); 
+    });
+  </script>
+
+</body>
+
+</html>
